@@ -1,0 +1,324 @@
+/* 基本スタイル設定 */
+:root {
+    --pokemon-red: #ff0000;
+    --pokemon-blue: #3B4CCA;
+    --pokemon-yellow: #FFDE00;
+    --pokemon-light-yellow: #fffbc8;
+    --pokemon-black: #333333;
+    --pokemon-white: #ffffff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', 'メイリオ', Meiryo, Osaka, 'MS Pゴシック', 'MS PGothic', sans-serif;
+}
+
+body {
+    background-color: var(--pokemon-light-yellow);
+    color: var(--pokemon-black);
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+}
+
+/* ヘッダースタイル */
+.pokemon-header {
+    text-align: center;
+    margin-bottom: 30px;
+    padding: 20px 0;
+    background-color: var(--pokemon-red);
+    color: var(--pokemon-white);
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.pokemon-header::before, .pokemon-header::after {
+    content: '';
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    background-color: rgba(255, 255, 255, 0.15);
+    border-radius: 50%;
+}
+
+.pokemon-header::before {
+    top: -75px;
+    left: -75px;
+}
+
+.pokemon-header::after {
+    bottom: -75px;
+    right: -75px;
+}
+
+.pokemon-header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    position: relative;
+    z-index: 1;
+}
+
+.pokemon-header p {
+    font-size: 1.1rem;
+    position: relative;
+    z-index: 1;
+}
+
+/* 検索フォームスタイル */
+.search-section {
+    margin-bottom: 30px;
+    padding: 20px;
+    background-color: var(--pokemon-white);
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+#pokemon-form {
+    display: flex;
+    gap: 10px;
+}
+
+#pokemon-name {
+    flex: 1;
+    padding: 12px 20px;
+    border: 3px solid var(--pokemon-blue);
+    border-radius: 30px;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+#pokemon-name:focus {
+    border-color: var(--pokemon-yellow);
+    box-shadow: 0 0 8px rgba(255, 222, 0, 0.5);
+}
+
+.search-button {
+    padding: 12px 24px;
+    background-color: var(--pokemon-blue);
+    color: var(--pokemon-white);
+    border: none;
+    border-radius: 30px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+.search-button:hover {
+    background-color: var(--pokemon-yellow);
+    color: var(--pokemon-black);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.search-button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* データ情報表示 */
+.data-info {
+    margin-top: 10px;
+    text-align: right;
+    font-size: 0.85rem;
+    color: #666;
+}
+
+#pokemon-count {
+    font-weight: bold;
+    color: var(--pokemon-red);
+}
+
+/* ローディングアニメーション */
+.loading {
+    display: none;
+    text-align: center;
+    margin: 30px 0;
+}
+
+.pokeball {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(to bottom, var(--pokemon-red) 0%, var(--pokemon-red) 50%, var(--pokemon-white) 50%, var(--pokemon-white) 100%);
+    border-radius: 50%;
+    border: 3px solid var(--pokemon-black);
+    position: relative;
+    margin: 0 auto 20px;
+    animation: shake 1.5s infinite;
+}
+
+.pokeball::before {
+    content: '';
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    background-color: var(--pokemon-white);
+    border-radius: 50%;
+    border: 3px solid var(--pokemon-black);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+}
+
+@keyframes shake {
+    0% { transform: rotate(0deg); }
+    20% { transform: rotate(20deg); }
+    40% { transform: rotate(-20deg); }
+    60% { transform: rotate(10deg); }
+    80% { transform: rotate(-10deg); }
+    100% { transform: rotate(0deg); }
+}
+
+/* エラーメッセージスタイル */
+.error-message {
+    display: none;
+    padding: 15px 20px;
+    background-color: rgba(255, 0, 0, 0.1);
+    border-left: 5px solid var(--pokemon-red);
+    border-radius: 5px;
+    margin-bottom: 20px;
+    color: var(--pokemon-red);
+    font-weight: bold;
+}
+
+/* ポケモン情報表示エリア */
+.pokemon-info {
+    display: none;
+    background-color: var(--pokemon-white);
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+    margin-top: 20px;
+    animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.pokemon-info h2 {
+    font-size: 2rem;
+    color: var(--pokemon-blue);
+    text-align: center;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 3px solid var(--pokemon-yellow);
+    text-transform: capitalize;
+}
+
+.pokemon-details {
+    display: flex;
+    flex-direction: column;
+}
+
+@media (min-width: 600px) {
+    .pokemon-details {
+        flex-direction: row;
+        align-items: flex-start;
+        gap: 20px;
+    }
+    
+    .pokemon-sprite {
+        flex: 0 0 120px;
+        margin-bottom: 0;
+    }
+}
+
+/* ポケモンスプライト表示 */
+.pokemon-sprite {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.pokemon-sprite img {
+    width: 120px;
+    height: 120px;
+    image-rendering: pixelated;
+    background-color: rgba(255, 222, 0, 0.1);
+    border-radius: 50%;
+    padding: 10px;
+    border: 2px solid var(--pokemon-yellow);
+}
+
+.pokemon-info-container {
+    flex: 1;
+}
+
+.pokemon-detail-item {
+    margin-bottom: 20px;
+}
+
+.pokemon-detail-item h3 {
+    font-size: 1.2rem;
+    color: var(--pokemon-red);
+    margin-bottom: 10px;
+    padding-left: 15px;
+    border-left: 4px solid var(--pokemon-red);
+}
+
+.pokemon-detail-item p {
+    font-size: 1.1rem;
+    background-color: var(--pokemon-light-yellow);
+    padding: 12px 15px;
+    border-radius: 8px;
+}
+
+.types-list, .abilities-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.type-badge {
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    text-transform: capitalize;
+    background-color: var(--pokemon-blue);
+    color: var(--pokemon-white);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.ability-badge {
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    text-transform: capitalize;
+    background-color: var(--pokemon-yellow);
+    color: var(--pokemon-black);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* レスポンシブデザイン */
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+    
+    .pokemon-header h1 {
+        font-size: 2rem;
+    }
+    
+    #pokemon-form {
+        flex-direction: column;
+    }
+    
+    .pokemon-details {
+        grid-template-columns: 1fr;
+    }
+}

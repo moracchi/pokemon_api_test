@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ポケモン情報検索</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header class="pokemon-header">
+            <h1>ポケモン図鑑</h1>
+            <p>ポケモン名を入力して情報を検索しよう！</p>
+        </header>
+        
+        <div class="search-section">
+            <form id="pokemon-form">
+                <input type="text" id="pokemon-name" placeholder="ポケモン名を入力（例：ピカチュウ）" required autocomplete="off">
+                <button type="submit" class="search-button">検索</button>
+            </form>
+            
+            <!-- データ更新情報 -->
+            <div class="data-info">
+                <p>登録ポケモン数: <span id="pokemon-count">0</span>種類</p>
+            </div>
+        </div>
+        
+        <!-- ローディング表示 -->
+        <div id="loading" class="loading">
+            <div class="pokeball"></div>
+            <p>検索中...</p>
+        </div>
+        
+        <!-- エラーメッセージ表示エリア -->
+        <div id="error-message" class="error-message"></div>
+        
+        <!-- ポケモン情報表示エリア -->
+        <div id="pokemon-info" class="pokemon-info">
+            <!-- 結果がここに表示されます -->
+        </div>
+    </div>
+    
+    <!-- メインスクリプトを読み込む -->
+    <script src="script.js"></script>
+</body>
+</html>
